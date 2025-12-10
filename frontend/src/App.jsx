@@ -5,7 +5,12 @@ import SessionManager from './components/SessionManager';
 import CodeExecutor from './components/CodeExecutor';
 import './App.css';
 
-const socket = io('http://localhost:3000');
+// Use current origin in production, localhost in development
+const API_URL = import.meta.env.PROD 
+  ? window.location.origin 
+  : 'http://localhost:3000';
+
+const socket = io(API_URL);
 
 function App() {
   const [sessionId, setSessionId] = useState(null);
@@ -50,7 +55,7 @@ function App() {
 
   const createSession = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/sessions', {
+      const response = await fetch(`${API_URL}/api/sessions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
