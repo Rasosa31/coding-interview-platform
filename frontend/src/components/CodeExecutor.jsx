@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { loadPyodide } from 'pyodide';
 import './CodeExecutor.css';
 
 function CodeExecutor({ code, language }) {
@@ -11,10 +10,16 @@ function CodeExecutor({ code, language }) {
   useEffect(() => {
     if (language === 'python' && !pyodide && !pyodideLoading) {
       setPyodideLoading(true);
-      loadPyodide({
-        indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/',
+      // Dynamic import to avoid bundling Pyodide during build
+      import('pyodide').then(({ loadPyodide }) => {
+        return loadPyodide({
+          indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/',
+        });
       }).then((py) => {
         setPyodide(py);
+        setPyodideLoading(false);
+      }).catch((error) => {
+        console.error('Failed to load Pyodide:', error);
         setPyodideLoading(false);
       });
     }
