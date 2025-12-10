@@ -11,6 +11,20 @@ export default defineConfig({
         changeOrigin: true
       }
     }
+  },
+  build: {
+    rollupOptions: {
+      external: ['node-fetch', 'fs', 'path', 'url', 'util', 'stream', 'buffer', 'crypto', 'os', 'events', 'http', 'https', 'net', 'tls', 'zlib', 'querystring'],
+      output: {
+        manualChunks: undefined
+      }
+    },
+    commonjsOptions: {
+      exclude: ['node-fetch']
+    }
+  },
+  optimizeDeps: {
+    exclude: ['pyodide']
   }
 });
 
