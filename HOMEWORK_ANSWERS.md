@@ -74,26 +74,51 @@ Se usa Node.js 18 en una imagen Alpine (ligera) como base.
 
 ## Question 7: Deployment
 
-**Servicio recomendado para deployment:**
+**Servicio usado para deployment:**
 
-Puedes usar cualquiera de estos servicios:
-- **Railway** (recomendado - fácil de usar)
+**Railway** - Deployment exitoso completado
+
+**URL de producción:**
+```
+https://coding-interview-platform-production-1a91.up.railway.app
+```
+
+**Configuración utilizada:**
+- Builder: **Railpack** (builder nativo de Railway, Nixpacks está deprecado)
+- Build Command: `npm install && cd backend && npm install && cd ../frontend && npm install && npm run build`
+- Start Command: `cd backend && node server.js`
+- Archivo de configuración: `railway.json`
+
+**Notas importantes:**
+- Railway detecta automáticamente proyectos Node.js
+- No se requiere Dockerfile (se usa Railpack en su lugar)
+- El frontend y backend se despliegan juntos en un solo servicio
+- Socket.io funciona correctamente en producción
+- CORS configurado para permitir conexiones desde el dominio de producción
+
+**Alternativas que también funcionarían:**
 - **Render** (gratis con limitaciones)
 - **Heroku** (requiere tarjeta de crédito para producción)
 - **Vercel** (para frontend) + **Railway/Render** (para backend)
 - **AWS/GCP/Azure** (más complejo pero más control)
 
-Para este proyecto, **Railway** o **Render** son las mejores opciones porque:
+**Railway fue elegido porque:**
 - Soportan Node.js nativamente
 - Permiten desplegar fácilmente aplicaciones full-stack
-- Tienen planes gratuitos
-- Configuración simple
+- Tienen planes gratuitos ($5 de crédito mensual)
+- Configuración simple y automática
+- Soporte para WebSockets (Socket.io) sin configuración adicional
 
 ## Homework URL
 
-Una vez que subas el código a GitHub, usa el link a la carpeta del proyecto. Por ejemplo:
+**Repositorio de GitHub:**
 ```
-https://github.com/tu-usuario/ai-dev-tools/tree/main/02-coding-interview
+https://github.com/Rasosa31/coding-interview-platform
+```
+
+**URL de producción (Railway):**
+```
+https://coding-interview-platform-production-1a91.up.railway.app
 ```
 
 ## Notas Adicionales
@@ -104,4 +129,6 @@ https://github.com/tu-usuario/ai-dev-tools/tree/main/02-coding-interview
 - Los tests de integración verifican la comunicación cliente-servidor
 - El Dockerfile permite containerizar la aplicación completa
 
+
+Cursor puede explicarme que hemos hecho hasta el momento?
 
