@@ -1,0 +1,64 @@
+.code-executor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #1e1e1e;
+}
+
+.executor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #252526;
+  border-bottom: 1px solid #3e3e42;
+}
+
+.executor-header h3 {
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.run-button {
+  padding: 0.5rem 1.5rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.run-button:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.run-button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+.output-container {
+  flex: 1;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.loading-message {
+  color: #858585;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.output {
+  color: #d4d4d4;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+
